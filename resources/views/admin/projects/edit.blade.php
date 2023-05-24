@@ -24,6 +24,24 @@
                 {{$message}}
             </div>
             @enderror
+
+            <label class="lb" for="title">Type:</label>
+            <select name="type_id" id="type_id" class="infos input @error('category_id') is-invalid @enderror">
+
+                <option value="">Nessuna</option>
+            
+                @foreach ($types as $type)
+            
+                    <option value="{{$type->id}}" {{$type->id == old('type_id', $project->type_id) ? 'selected' : ''}}>{{$type->name}}</option>
+            
+                @endforeach
+            
+            </select>
+            @error('category_id')
+            <div class="invalid-feedback mb-3 mt-0">
+                {{$message}}
+            </div>
+            @enderror
         
             <label for="description" class="lb">Description:</label>
             <textarea name="description" id=description" cols="30" rows="3" class="infos input @error('description') is-invalid @enderror">{{old('description') ?? $project->description}}</textarea>
