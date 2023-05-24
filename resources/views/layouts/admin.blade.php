@@ -151,6 +151,14 @@
                             </span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('admin.technologies.index')}}" class="{{str_contains( Route::currentRouteName(), 'admin.technologies.index') ? 'active-dashboard' : ''}}">
+                            <i class="fa fa-hashtag fa-2x"></i>
+                            <span class="nav-text">
+                                All Technologies
+                            </span>
+                        </a>
+                    </li>
                     <li class="has-subnav">
                         <a href="{{route('admin.projects.create')}}" class="{{str_contains( Route::currentRouteName(), 'admin.projects.create') ? 'active-dashboard' : ''}}">
                            <i class="fa fa-plus fa-2x"></i>
@@ -165,6 +173,14 @@
                             <i class="fa fa-plus fa-2x"></i>
                             <span class="nav-text">
                                Add Type
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.technologies.create')}}" class="{{str_contains( Route::currentRouteName(), 'admin.technologies.create') ? 'active-dashboard' : ''}}">
+                            <i class="fa fa-plus fa-2x"></i>
+                            <span class="nav-text">
+                               Add Technology
                             </span>
                         </a>
                     </li>

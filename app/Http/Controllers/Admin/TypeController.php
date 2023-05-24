@@ -130,8 +130,8 @@ class TypeController extends Controller
             'name' => 'required|max:100',
             'description' => 'required|max:100',
         ], [
-            'title.required' => 'Il campo è obbligatorio',
-            'title.max' => 'Puoi inserire al massimo 100 Caratteri',
+            'name.required' => 'Il campo è obbligatorio',
+            'name.max' => 'Puoi inserire al massimo 100 Caratteri',
             'description.required' => 'Il campo è obbligatorio',
             'description.max' => 'Puoi inserire al massimo 100 Caratteri',
         ])->validate();

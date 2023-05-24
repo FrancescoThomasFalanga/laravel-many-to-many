@@ -17,7 +17,11 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        //
+        
+        $technologies = Technology::all();
+
+        return view('admin.technologies.index', compact('technologies'));
+
     }
 
     /**
@@ -27,7 +31,9 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        $technologies = Technology::all();
+
+        return view('admin.technologies.create', compact('technologies'));
     }
 
     /**
@@ -38,7 +44,21 @@ class TechnologyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $this->validation($request);
+
+        $form_data = $request->all();
+
+        $technology = new Technology();
+
+        $technology->fill($form_data);
+
+        $technology->slug = Str::slug($technology->name, '-');
+
+        $technology->save();
+
+        return redirect()->route('admin.technologies.show', $technology->slug);
+
     }
 
     /**
@@ -49,7 +69,7 @@ class TechnologyController extends Controller
      */
     public function show(Technology $technology)
     {
-        //
+        return view('admin.technologies.show', compact('technology'));
     }
 
     /**
@@ -60,7 +80,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-        //
+        return view('admin.technologies.edit', compact('technology'));
     }
 
     /**
@@ -72,7 +92,17 @@ class TechnologyController extends Controller
      */
     public function update(Request $request, Technology $technology)
     {
-        //
+        $this->validation($request);
+
+        $form_data = $request->all();
+
+        $technology->slug = Str::slug($technology->name, '-');
+
+        $technology->update($form_data);
+
+        $technology->save();
+
+        return redirect()->route('admin.technologies.show', $technology->slug);
     }
 
     /**
@@ -83,6 +113,25 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+
+        return redirect()->route('admin.technologies.index');
+    }
+
+    private function validation($request) {
+
+        $form_data = $request->all();
+
+        $validator = Validator::make($form_data, [
+            'name' => 'required|max:100',
+            'color' => 'required|max:7',
+        ], [
+            'name.required' => 'Il campo è obbligatorio',
+            'name.max' => 'Puoi inserire al massimo 100 Caratteri',
+            'color.required' => 'Il campo è obbligatorio',
+        ])->validate();
+
+        return $validator;
+
     }
 }
