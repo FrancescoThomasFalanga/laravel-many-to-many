@@ -2,13 +2,13 @@
 
 @section('content')
 
-    <div class="go-back-btn text-center">
+<div class="go-back-btn text-center d-flex justify-content-center align-items-center gap-4" style="margin-top:100px">
 
-        <button class="button">
-            <a href="{{route('admin.types.show', $type->slug)}}">Go Back</a>
-        </button>
+    <h2 class="mb-0 green text-uppercase">Edit Type</h2>
 
-    </div>
+    <a class="btn-custom" href="{{route('admin.types.show', $type->slug)}}">Go Back <span></span></a>
+
+</div>
 
     <div class="form-container">
 

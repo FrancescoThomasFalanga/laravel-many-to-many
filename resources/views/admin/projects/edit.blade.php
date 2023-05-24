@@ -2,15 +2,15 @@
 
 @section('content')
 
-    <div class="go-back-btn text-center">
+    <div class="go-back-btn text-center d-flex justify-content-center align-items-center gap-4" style="margin-top:100px">
 
-        <button class="button">
-            <a href="{{route('admin.projects.show', $project->slug)}}">Go Back</a>
-        </button>
+        <h2 class="mb-0 green text-uppercase">Edit Project</h2>
+
+        <a class="btn-custom" href="{{route('admin.projects.show', $project->slug)}}">Go Back <span></span></a>
 
     </div>
 
-    <div class="form-container">
+    <div class="form-container" style="padding-bottom: 100px">
 
         <form class="form" action="{{route('admin.projects.update', $project->slug)}}" method="POST">
             @csrf
@@ -42,6 +42,23 @@
                 {{$message}}
             </div>
             @enderror
+            
+            <div class="technologies d-flex flex-column gap-2 mt-5 mb-3">
+
+                <h4 class="green">Technologies:</h4>
+
+                @foreach ($technologies as $technology)
+    
+                <div class="technology">
+
+                    <input @checked($project->technologies->contains($technology)) class="m-0" type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}">
+                    <label class="lb m-0" for="technology-{{$technology->id}}">{{$technology->name}}</label>
+
+                </div>
+    
+                @endforeach
+
+            </div>
         
             <label for="description" class="lb">Description:</label>
             <textarea name="description" id=description" cols="30" rows="3" class="infos input @error('description') is-invalid @enderror">{{old('description') ?? $project->description}}</textarea>
