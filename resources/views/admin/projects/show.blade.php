@@ -29,6 +29,8 @@
 
                 </h6>
 
+                <strong>GitHub Link: </strong><a href="">{{$project->repo}}</a>
+
                 <p>{{$project->description}}</p>
 
                 <div class="d-flex gap-4">

@@ -152,14 +152,17 @@ class ProjectController extends Controller
         // VALIDATION ITAS
         $validator = Validator::make($form_data, [
             'title' => 'required|max:100',
-            'description' => 'required|max:300',
+            'description' => 'required|max:200',
+            'repo' => 'required|max:200',
             'url_img' => 'required',
             'type_id' => 'nullable|exists:types,id',
         ], [
             'title.required' => 'Il campo è obbligatorio',
             'title.max' => 'Puoi inserire al massimo 100 Caratteri',
             'description.required' => 'Il campo è obbligatorio',
-            'description.max' => 'Puoi inserire al massimo 300 Caratteri',
+            'description.max' => 'Puoi inserire al massimo 200 Caratteri',
+            'repo.required' => 'Il campo è obbligatorio',
+            'repo.required' => 'Puoi inserire al massimo 200 caratteri',
             'url_img.required' => 'Il campo è obbligatorio',
             'type_id.exists' => 'La categoria deve essere presente nel nostro sito',
         ])->validate();

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->text('description');
+            $table->string('repo');
             $table->text('url_img');
             $table->string('slug', 100);
             $table->timestamps();

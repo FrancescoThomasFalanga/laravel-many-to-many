@@ -59,6 +59,14 @@
                 @endforeach
 
             </div>
+
+            <label class="lb" for="repo">Link Repo:</label>
+            <input name="repo" id="repo" type="text" class="infos input @error('repo') is-invalid @enderror" value="{{old('repo') ?? $project->repo}}">
+            @error('repo')
+            <div class="invalid-feedback mb-3 mt-0">
+                {{$message}}
+            </div>
+            @enderror
         
             <label for="description" class="lb">Description:</label>
             <textarea name="description" id=description" cols="30" rows="3" class="infos input @error('description') is-invalid @enderror">{{old('description') ?? $project->description}}</textarea>

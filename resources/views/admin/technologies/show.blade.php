@@ -8,7 +8,7 @@
 
             <h1 class="mb-0">Selected Technology</h1>
 
-             <a class="btn-custom" href="{{route('admin.technologies.index')}}">Go Back</a>
+             <a class="btn-custom" href="{{route('admin.technologies.index')}}">Go Back <span></span></a>
 
         </div>
 
@@ -37,7 +37,7 @@
         <div class="d-flex gap-4 mt-5">
 
             <button class="button" style="margin: 0">
-                <a href="{{route('admin.technologies.edit', $technology->slug)}}">Edit</a>
+                <a href="{{route('admin.technologies.edit', $technology->slug)}}">Edit <span></span></a>
             </button>
 
             <form action="{{route('admin.technologies.destroy', $technology->slug)}}" method="POST">
@@ -46,7 +46,7 @@
                 @method('DELETE')
     
                 <button class="btn btn-danger text-primary fw-bold p-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  DELETE
+                  DELETE <span></span>
                 </button>
       
                 <div class="modal fade text-primary" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

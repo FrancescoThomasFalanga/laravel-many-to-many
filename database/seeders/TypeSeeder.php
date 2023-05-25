@@ -19,15 +19,17 @@ class TypeSeeder extends Seeder
     public function run(Faker $faker)
     {
         
-        for ($i = 0; $i < 10; $i++) {
+        $types = ['Front End', 'Back End', 'Full Stack', 'UX', 'UI', 'Marketing'];
 
-            $type = new Type();
+        foreach ($types as $type) {
 
-            $type->name = $faker->jobTitle();
-            $type->slug = Str::slug($type->name, '-');
-            $type->description = $faker->text(100);
+            $newType = new Type();
 
-            $type->save();
+            $newType->name = $type;
+            $newType->slug = Str::slug($newType->name, '-');
+            $newType->description = $faker->text();
+
+            $newType->save();
 
         }
  

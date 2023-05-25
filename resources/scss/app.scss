@@ -53,7 +53,7 @@ div.fluid-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 18px;
+        // padding: 10px;
 
         background-color: #0fe855;
 
@@ -70,8 +70,9 @@ div.fluid-container {
     
                     img {
     
-                        width: 100%;
+                        width: 80px;
                         object-fit: cover;
+                        padding: 10px;
     
                     }
     
