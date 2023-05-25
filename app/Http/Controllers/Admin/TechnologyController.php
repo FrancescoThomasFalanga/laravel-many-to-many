@@ -31,9 +31,7 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        $technologies = Technology::all();
-
-        return view('admin.technologies.create', compact('technologies'));
+        return view('admin.technologies.create');
     }
 
     /**
