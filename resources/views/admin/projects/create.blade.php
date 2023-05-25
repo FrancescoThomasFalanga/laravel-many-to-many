@@ -50,12 +50,18 @@
     
                 <div class="technology">
 
-                    <input class="m-0" type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}">
-                    <label class="lb m-0" for="technology-{{$technology->id}}">{{$technology->name}}</label>
+                    <input class="m-0" type="checkbox" id="technology_{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked(in_array($technology->id, old('technologies', [])))>
+                    <label class="lb m-0" for="technology_{{$technology->id}}">{{$technology->name}}</label>
 
                 </div>
     
                 @endforeach
+
+                @error('technologies')
+                <div class="text-danger mb-3 mt-0">
+                    {{$message}}
+                </div>
+                @enderror
 
             </div>
 

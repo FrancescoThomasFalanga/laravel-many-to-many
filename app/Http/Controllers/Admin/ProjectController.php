@@ -156,6 +156,7 @@ class ProjectController extends Controller
             'repo' => 'required|max:200',
             'url_img' => 'required',
             'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'exists:technologies,id',
         ], [
             'title.required' => 'Il campo è obbligatorio',
             'title.max' => 'Puoi inserire al massimo 100 Caratteri',
@@ -165,6 +166,7 @@ class ProjectController extends Controller
             'repo.required' => 'Puoi inserire al massimo 200 caratteri',
             'url_img.required' => 'Il campo è obbligatorio',
             'type_id.exists' => 'La categoria deve essere presente nel nostro sito',
+            'technologies.exists' => 'La tecnologia deve essere presente nel nostro sito',
         ])->validate();
 
         return $validator;
