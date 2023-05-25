@@ -48,10 +48,16 @@
                 <h4 class="green">Technologies:</h4>
 
                 @foreach ($technologies as $technology)
-    
-                <div class="technology">
 
-                    <input @checked($project->technologies->contains($technology)) class="m-0" type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}">
+                
+                <div class="technology">
+                    
+                    @if ($errors->any())
+                        <input @checked(in_array($technology->id, old('technologies', []))) class="m-0" type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}">
+                    @else
+                        <input @checked($project->technologies->contains($technology->id)) class="m-0" type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}">
+                    @endif
+                    
                     <label class="lb m-0" for="technology-{{$technology->id}}">{{$technology->name}}</label>
 
                 </div>
