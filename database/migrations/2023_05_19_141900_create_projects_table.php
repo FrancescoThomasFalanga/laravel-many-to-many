@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title', 100);
             $table->text('description');
             $table->string('repo');
-            $table->text('url_img');
+            $table->text('url_img')->nullable;
             $table->string('slug', 100);
             $table->timestamps();
         });

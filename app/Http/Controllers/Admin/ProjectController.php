@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -54,6 +55,13 @@ class ProjectController extends Controller
         $form_data = $request->all();
 
         $project = new Project();
+
+        if($request->hasFile('url_img')) {
+   
+            $path = Storage::put('project_images', $request->url_img);
+         
+            $form_data['url_img'] = $path;
+         }
 
         $project->fill($form_data);
         
@@ -110,6 +118,19 @@ class ProjectController extends Controller
     {
         $this->validation($request);
 
+        if($request->hasFile('url_img')) {
+
+            if($project->url_img) {
+         
+               Storage::delete($project->url_img);
+            }
+         
+            $path = Storage::put('project_images', $request->url_img);
+         
+            $form_data['url_img'] = $path;
+         
+         }
+
         $form_data = $request->all();
 
         $project->slug = Str::slug($form_data['title'], '-');
@@ -139,6 +160,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+
+        if($project->url_img) {
+            Storage::delete($project->url_img);
+         }
+
         $project->delete();
 
         return redirect()->route('admin.projects.index');
@@ -154,7 +180,7 @@ class ProjectController extends Controller
             'title' => 'required|max:100',
             'description' => 'required|max:200',
             'repo' => 'required|max:200',
-            'url_img' => 'required',
+            'url_img' => 'nullable|image|max:4096',
             'type_id' => 'nullable|exists:types,id',
             'technologies' => 'exists:technologies,id',
         ], [
@@ -164,7 +190,8 @@ class ProjectController extends Controller
             'description.max' => 'Puoi inserire al massimo 200 Caratteri',
             'repo.required' => 'Il campo è obbligatorio',
             'repo.required' => 'Puoi inserire al massimo 200 caratteri',
-            'url_img.required' => 'Il campo è obbligatorio',
+            'url_img.image' => 'Il formato non è corretto',
+            'url_img.max' => 'Dimensioni del file troppo grandi, max :max',
             'type_id.exists' => 'La categoria deve essere presente nel nostro sito',
             'technologies.exists' => 'La tecnologia deve essere presente nel nostro sito',
         ])->validate();

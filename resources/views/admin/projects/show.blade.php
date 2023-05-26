@@ -8,7 +8,7 @@
             <div class="left">
 
                 <a href="">
-                    <img src="{{$project->url_img}}" alt="Project IMG">
+                    <img src="{{asset('storage/' . $project->url_img)}}" alt="Project IMG">
                 </a>
 
             </div>

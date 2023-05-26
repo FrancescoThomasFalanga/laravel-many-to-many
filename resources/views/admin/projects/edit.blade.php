@@ -12,7 +12,7 @@
 
     <div class="form-container" style="padding-bottom: 100px">
 
-        <form class="form" action="{{route('admin.projects.update', $project->slug)}}" method="POST">
+        <form class="form" action="{{route('admin.projects.update', $project->slug)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
     
@@ -83,7 +83,7 @@
             @enderror
         
             <label for="url_img" class="lb">URL Img:</label>
-            <input name="url_img" id="url_img" type="text" class="infos input @error('url_img') is-invalid @enderror" value="{{old('url_imd') ?? $project->url_img}}">
+            <input name="url_img" id="url_img" type="file" class="infos input @error('url_img') is-invalid @enderror">
             @error('url_img')
             <div class="invalid-feedback mb-3 mt-0">
                 {{$message}}
