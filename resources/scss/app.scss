@@ -835,6 +835,9 @@ overflow:hidden;
 transition:width .05s linear;
 z-index:1000;
 padding-top: 63px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 }
 
 .main-menu>ul {

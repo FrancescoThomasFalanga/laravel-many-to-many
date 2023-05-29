@@ -21,18 +21,6 @@
             <div class="right">
 
                 <h2>{{$project->title}}</h2> 
-                
-                <h5>Types: <span class="text-decoration-underline">{{$project->type->name ?? 'nessuna'}}</span></h5>
-
-                <h6>Technologies: 
-                    
-                    @foreach($project->technologies as $technology) 
-
-                        <span class="badge rounded-pill mx-1 my-1" style="background-color: {{$technology->color}}">{{$technology->name}}</span>
-
-                    @endforeach
-
-                </h6>
 
                 <p>{{$project->description}}</p>
 
