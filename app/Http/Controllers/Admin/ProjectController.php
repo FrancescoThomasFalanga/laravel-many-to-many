@@ -118,6 +118,8 @@ class ProjectController extends Controller
     {
         $this->validation($request);
 
+        $form_data = $request->all();
+
         if($request->hasFile('url_img')) {
 
             if($project->url_img) {
@@ -131,8 +133,6 @@ class ProjectController extends Controller
          
          }
 
-        $form_data = $request->all();
-
         $project->slug = Str::slug($form_data['title'], '-');
 
         $project->update($form_data);
@@ -145,7 +145,7 @@ class ProjectController extends Controller
 
         } else {
 
-            $project->technlogies()->detach();
+            $project->technologies()->detach();
 
         }
 
